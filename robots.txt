@@ -1,0 +1,22 @@
+# Robots.txt for Average Calculator
+# This file helps search engine crawlers understand how to index your website
+
+# Allow all crawlers to index the website
+User-agent: *
+Allow: /
+
+# Specify the location of the sitemap
+# IMPORTANT: Replace "example.com" with your actual domain name
+# Example: Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://example.com/sitemap.xml
+
+# Additional rules (optional)
+# Prevent access to specific files or directories if needed
+# Disallow: /admin/
+# Disallow: /private/
+
+# Crawl delay (seconds) - time to wait between requests
+# Crawl-delay: 1
+
+# Request rate (pages per second)
+# Request-rate: 1/1s

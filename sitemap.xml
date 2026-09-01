@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- 
+        IMPORTANT: Replace "example.com" with your actual domain name
+        Example: Change https://example.com/ to https://yourdomain.com/
+        
+        This sitemap helps search engines discover and index all pages on your website.
+        Update the domain name before deploying to a live server.
+    -->
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://example.com/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <lastmod>2026-09-01</lastmod>
+    </url>
+
+    <!-- About Page -->
+    <url>
+        <loc>https://example.com/about.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2026-09-01</lastmod>
+    </url>
+
+    <!-- Guide Page -->
+    <url>
+        <loc>https://example.com/guide.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2026-09-01</lastmod>
+    </url>
+
+    <!-- FAQ Page -->
+    <url>
+        <loc>https://example.com/faq.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <lastmod>2026-09-01</lastmod>
+    </url>
+
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://example.com/privacy-policy.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+        <lastmod>2026-09-01</lastmod>
+    </url>
+
+    <!-- Disclaimer -->
+    <url>
+        <loc>https://example.com/disclaimer.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+        <lastmod>2026-09-01</lastmod>
+    </url>
+
+</urlset>
