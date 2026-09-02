@@ -43,10 +43,9 @@
 
     <!-- Disclaimer -->
     <url>
-        <loc>https://example.com/disclaimer.html</loc>
+        <loc>https://average-calculator-bay.vercel.app/disclaimer.html</loc>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
         <lastmod>2026-09-01</lastmod>
     </url>
-
 </urlset>
