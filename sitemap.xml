@@ -6,7 +6,7 @@
         <loc>https://average-calculator-bay.vercel.app/</loc>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
-        <lastmod>2026-09-01</lastmod>
+        <lastmod>2026-09-06</lastmod>
     </url>
 
     <!-- About Page -->
@@ -14,7 +14,7 @@
         <loc>https://average-calculator-bay.vercel.app/about.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
-        <lastmod>2026-09-01</lastmod>
+        <lastmod>2026-09-06</lastmod>
     </url>
 
     <!-- Guide Page -->
@@ -22,7 +22,7 @@
         <loc>https://average-calculator-bay.vercel.app/guide.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
-        <lastmod>2026-09-01</lastmod>
+        <lastmod>2026-09-06</lastmod>
     </url>
 
     <!-- FAQ Page -->
@@ -30,7 +30,7 @@
         <loc>https://average-calculator-bay.vercel.app/faq.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
-        <lastmod>2026-09-01</lastmod>
+        <lastmod>2026-09-06</lastmod>
     </url>
 
     <!-- Privacy Policy -->
@@ -38,7 +38,7 @@
         <loc>https://average-calculator-bay.vercel.app/privacy-policy.html</loc>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2026-09-01</lastmod>
+        <lastmod>2026-09-06</lastmod>
     </url>
 
     <!-- Disclaimer -->
@@ -46,6 +46,6 @@
         <loc>https://average-calculator-bay.vercel.app/disclaimer.html</loc>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
-        <lastmod>2026-09-01</lastmod>
+        <lastmod>2026-09-06</lastmod>
     </url>
 </urlset>

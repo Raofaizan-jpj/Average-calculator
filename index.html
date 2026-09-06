@@ -3,33 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Average Calculator | Calculate Average of Numbers Online</title>
-    <meta name="description" content="Free online average calculator. Calculate the average (arithmetic mean) of multiple numbers instantly. Supports decimals, negatives, and comma-separated values.">
-    <meta name="keywords" content="average calculator, calculate average, mean calculator, average finder, arithmetic mean calculator">
-    <meta name="canonical" content="https://example.com/">
+    <title>Average Calculator – Find the Average of Numbers</title>
+    <meta name="description" content="Use our free average calculator to find the mean of any set of numbers with step-by-step steps. Paste values easily and calculate online instantly.">
+    <meta name="keywords" content="average calculator, calculate average, mean calculator, average of numbers, average calculator with steps, calculate the mean, average formula, find the average of numbers, online average calculator, average of a set of numbers">
+    
+    <!-- Canonical & Robots -->
+    <link rel="canonical" href="https://average-calculator-bay.vercel.app/">
     <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="9Q1q1gPk2qSRM4EOy9Ygh7J5gQvlTC3hn3TO_TI9pf8" />
-    <meta property="og:title" content="Average Calculator | Calculate Average of Numbers Online">
-    <meta property="og:description" content="Free online average calculator. Calculate the average (arithmetic mean) of multiple numbers instantly.">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://example.com/">
+    <meta property="og:url" content="https://average-calculator-bay.vercel.app/">
+    <meta property="og:title" content="Average Calculator – Find the Average of Numbers">
+    <meta property="og:description" content="Calculate the average and arithmetic mean of multiple numbers with detailed step-by-step calculations. Fast, responsive, and completely private in-browser.">
+    <meta property="og:site_name" content="Average Calculator">
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Average Calculator | Calculate Average of Numbers Online">
-    <meta name="twitter:description" content="Free online average calculator. Calculate the average of multiple numbers instantly.">
+    <meta name="twitter:title" content="Average Calculator – Find the Average of Numbers">
+    <meta name="twitter:description" content="Free online average calculator with steps. Calculate sum, count, arithmetic mean, and median instantly in your browser.">
+
+    <!-- Google Verification -->
+    <meta name="google-site-verification" content="9Q1q1gPk2qSRM4EOy9Ygh7J5gQvlTC3hn3TO_TI9pf8" />
+
+    <!-- Favicon & Styles -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data: WebApplication, BreadcrumbList, FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Average Calculator",
+          "url": "https://average-calculator-bay.vercel.app/",
+          "description": "Free online average calculator tool to find the arithmetic mean, total sum, and count of any dataset with step-by-step math breakdowns.",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://average-calculator-bay.vercel.app/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is an average calculator?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "An average calculator is an online tool designed to quickly compute the arithmetic mean of a group of numbers by summing all input values and dividing by the total count."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I calculate an average?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "To calculate an average, add all values in your dataset together to find their sum, then divide that sum by the total number of values."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do you find the average of numbers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You find the average of numbers using the formula: Average = (Sum of Values) ÷ (Count of Values). For example, for 10, 20, and 30, add them to get 60, then divide by 3 to get 20."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is average the same as mean?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "In everyday speech and basic mathematics, 'average' almost always refers to the arithmetic mean. In statistics, 'average' can also refer to other measures of central tendency such as the median or mode."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I enter decimal numbers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, our average calculator fully supports decimal numbers (both positive and negative) with precise floating-point rounding."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I paste numbers from Excel?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! You can copy columns or rows directly from Microsoft Excel or Google Sheets and paste them into the input box. The tool automatically handles tabs, spaces, and line breaks."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can an average be affected by outliers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, extreme high or low values (outliers) heavily distort the arithmetic mean. When outliers exist, looking at the median alongside the average provides a more representative view."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the average formula?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The standard average formula is: Average = Sum of All Values ÷ Number of Values (x̄ = Σx / n)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I calculate an average online for free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, this online average calculator is 100% free to use with unlimited calculations and no registration required."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
-    <!-- Header and Navigation -->
-    <header>
+
+    <!-- Header & Navigation -->
+    <header class="site-header">
         <div class="container">
-            <div class="header-content">
-                <h1 class="logo">Average Calculator</h1>
-                <nav>
-                    <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="guide.html">Guide</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
+            <div class="header-inner">
+                <a href="index.html" class="brand-link" aria-label="Average Calculator Homepage">
+                    <span class="brand-icon">∑</span>
+                    <span>Average Calculator</span>
+                </a>
+                <nav aria-label="Primary Navigation">
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="nav-link active">Calculator</a></li>
+                        <li><a href="guide.html" class="nav-link">Guide</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="faq.html" class="nav-link">FAQ</a></li>
                     </ul>
                 </nav>
             </div>
@@ -37,209 +164,536 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-section">
         <div class="container">
-            <h2>Calculate Average Instantly</h2>
-            <p>Enter multiple numbers and get their average (arithmetic mean) in seconds.</p>
-        </div>
-    </section>
-
-    <!-- Main Calculator -->
-    <section class="calculator-section">
-        <div class="container">
-            <div class="calculator-card">
-                <h2>Average Calculator</h2>
-                <form id="calculatorForm">
-                    <div class="form-group">
-                        <label for="numbersInput">Enter Numbers:</label>
-                        <textarea 
-                            id="numbersInput" 
-                            placeholder="Enter numbers separated by commas or on separate lines&#10;Example: 10, 20, 30, 40, 50"
-                            required>
-                        </textarea>
-                        <small>Supports: Decimals, negative numbers, commas, and line breaks</small>
-                    </div>
-                    <div class="button-group">
-                        <button type="submit" class="btn btn-primary">Calculate Average</button>
-                        <button type="button" class="btn btn-secondary" id="clearBtn">Clear</button>
-                    </div>
-                </form>
-
-                <!-- Error Message -->
-                <div id="errorMessage" class="error-message" style="display: none;"></div>
-
-                <!-- Results Section -->
-                <div id="resultsSection" class="results-section" style="display: none;">
-                    <h3>Results</h3>
-                    
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <span class="result-label">Numbers Entered:</span>
-                            <span class="result-value" id="numbersDisplay"></span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-label">Count:</span>
-                            <span class="result-value" id="countDisplay"></span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-label">Sum:</span>
-                            <span class="result-value" id="sumDisplay"></span>
-                        </div>
-                        <div class="result-item highlight">
-                            <span class="result-label">Average (Mean):</span>
-                            <span class="result-value" id="averageDisplay"></span>
-                        </div>
-                    </div>
-
-                    <div class="calculation-breakdown">
-                        <h4>Calculation Breakdown:</h4>
-                        <div id="breakdownDisplay"></div>
-                    </div>
-
-                    <button type="button" class="btn btn-copy" id="copyBtn">Copy Result</button>
-                    <div id="copyMessage" class="copy-message" style="display: none;">Copied to clipboard!</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How Average Is Calculated -->
-    <section class="info-section">
-        <div class="container">
-            <h2>How Average Is Calculated</h2>
-            <div class="info-content">
-                <p>An average (also called arithmetic mean) is calculated by adding all numbers together and dividing by the count of numbers.</p>
-                <div class="formula">
-                    <strong>Average = (Sum of all numbers) ÷ (Count of numbers)</strong>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Example -->
-    <section class="example-section">
-        <div class="container">
-            <h2>Average Calculator Example</h2>
-            <div class="example-content">
-                <div class="example-step">
-                    <h4>Input:</h4>
-                    <p class="example-data">10, 20, 30, 40, 50</p>
-                </div>
-                <div class="example-step">
-                    <h4>Calculation:</h4>
-                    <p class="example-calculation">(10 + 20 + 30 + 40 + 50) ÷ 5 = 150 ÷ 5 = <strong>30</strong></p>
-                </div>
-                <div class="example-step">
-                    <h4>Result:</h4>
-                    <p class="example-result"><strong>Average = 30</strong></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How to Use -->
-    <section class="info-section alternate">
-        <div class="container">
-            <h2>How to Use the Calculator</h2>
-            <ol class="steps-list">
-                <li><strong>Enter Numbers:</strong> Type or paste numbers into the text area</li>
-                <li><strong>Separate Values:</strong> Use commas, spaces, or line breaks to separate numbers</li>
-                <li><strong>Calculate:</strong> Click the "Calculate Average" button</li>
-                <li><strong>View Results:</strong> See the average, sum, count, and calculation breakdown</li>
-                <li><strong>Copy Result:</strong> Use the copy button to copy the average to clipboard</li>
-            </ol>
-        </div>
-    </section>
-
-    <!-- Types of Average -->
-    <section class="info-section">
-        <div class="container">
-            <h2>Types of Average</h2>
-            <div class="types-grid">
-                <div class="type-card">
-                    <h4>Arithmetic Mean</h4>
-                    <p>The sum of all numbers divided by the count. This is what our calculator computes. Most common type of average.</p>
-                </div>
-                <div class="type-card">
-                    <h4>Median</h4>
-                    <p>The middle value when numbers are arranged in order. Useful when dealing with outliers.</p>
-                </div>
-                <div class="type-card">
-                    <h4>Mode</h4>
-                    <p>The number that appears most frequently in a dataset. Useful for finding the most common value.</p>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 2rem; color: #666;">This calculator specifically computes the <strong>Arithmetic Mean</strong>.</p>
-        </div>
-    </section>
-
-    <!-- Benefits -->
-    <section class="info-section alternate">
-        <div class="container">
-            <h2>Benefits of Using an Average Calculator</h2>
-            <ul class="benefits-list">
-                <li><strong>Save Time:</strong> Calculate averages instantly without manual computation</li>
-                <li><strong>Accuracy:</strong> Eliminate calculation errors with automated computation</li>
-                <li><strong>Accessibility:</strong> No installation required - works in any web browser</li>
-                <li><strong>Privacy:</strong> All calculations are done locally in your browser - no data stored</li>
-                <li><strong>Flexibility:</strong> Supports decimals, negative numbers, and any quantity of values</li>
-                <li><strong>Educational:</strong> Learn how averages are calculated with detailed breakdowns</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- FAQ Preview -->
-    <section class="info-section">
-        <div class="container">
-            <h2>Common Questions</h2>
-            <div class="faq-preview">
-                <div class="faq-item">
-                    <h4>Can I calculate the average of decimal numbers?</h4>
-                    <p>Yes, the average calculator supports decimal numbers and will provide accurate results.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Can I use negative numbers?</h4>
-                    <p>Yes, the calculator supports negative numbers. Simply include them in your list of values.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>How many numbers can I enter?</h4>
-                    <p>You can enter as many numbers as you need. There's no practical limit to the quantity.</p>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 2rem;">
-                <a href="faq.html" class="link">View all frequently asked questions →</a>
+            <h1 class="hero-title">Average Calculator</h1>
+            <p class="hero-desc">
+                Find the average (arithmetic mean), total sum, and count of any set of numbers instantly. Enter or paste values separated by commas, spaces, tabs, or new lines.
             </p>
         </div>
     </section>
 
-    <!-- Disclaimer Notice -->
-    <section class="info-section alternate">
+    <!-- Interactive Calculator Workspace -->
+    <main class="calculator-section">
         <div class="container">
-            <h3>Disclaimer</h3>
-            <p>This average calculator is provided for informational and educational purposes. While we strive for accuracy, users should verify important calculations independently. For detailed information, please see our <a href="disclaimer.html" class="link">full disclaimer</a>.</p>
+            <div class="calc-card">
+                <form id="calcForm" novalidate>
+                    <!-- Input Toolbar -->
+                    <div class="input-header">
+                        <label for="numbersInput" class="input-label">
+                            <span>Enter or Paste Numbers:</span>
+                        </label>
+                        <div class="input-tools">
+                            <button type="button" class="tool-btn" id="pasteBtn" title="Paste numbers from clipboard">
+                                📋 Paste Clipboard
+                            </button>
+                            <button type="button" class="tool-btn" id="loadExampleBtn" title="Load sample dataset">
+                                💡 Load Example
+                            </button>
+                            <button type="button" class="tool-btn" id="clearToolbarBtn" title="Clear input text">
+                                ✕ Clear
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Input Box -->
+                    <div class="data-textarea-wrapper">
+                        <textarea 
+                            id="numbersInput" 
+                            name="numbers" 
+                            class="data-textarea" 
+                            rows="6" 
+                            placeholder="Enter numbers separated by commas, spaces, new lines, or plus signs (+)...&#10;Example: 10 + 30 + 20 + 50 or 10, 20, 30, 40&#10;(Trailing plus signs such as 10+30+20+50+ are automatically handled)"
+                            aria-describedby="inputHelper"
+                            required></textarea>
+                    </div>
+
+                    <div class="input-helper" id="inputHelper">
+                        <span>Supports commas, spaces, line breaks, plus signs (+), negatives & decimals</span>
+                        <span class="data-counter" id="inputCounter">0 numbers entered</span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-row">
+                        <button type="button" id="calculateBtn" class="btn btn-primary">
+                            <span>Calculate Average</span>
+                            <span>➔</span>
+                        </button>
+                        <button type="button" id="clearBtn" class="btn btn-secondary">
+                            Reset / Clear
+                        </button>
+                        <span class="keyboard-hint">
+                            Press <span class="kbd-key">Ctrl</span> + <span class="kbd-key">Enter</span> to calculate
+                        </span>
+                    </div>
+
+                    <!-- Privacy Friendly Note -->
+                    <p class="privacy-note">
+                        🔒 <strong>Privacy note:</strong> Your data is processed in your browser and is not uploaded to a server.
+                    </p>
+
+                    <!-- Validation Error Message -->
+                    <div id="alertBox" class="alert alert-danger" role="alert" aria-live="polite">
+                        <span class="alert-icon">⚠️</span>
+                        <span id="alertMessage">Please enter valid numbers.</span>
+                    </div>
+                </form>
+
+                <!-- Results Section -->
+                <section id="resultsCard" class="results-card" aria-label="Calculation Results" aria-live="polite">
+                    <div class="results-header">
+                        <h3 class="results-title">Calculation Summary</h3>
+                        <span id="copyToast" class="copy-toast">✓ Copied!</span>
+                    </div>
+
+                    <!-- Main Hero Result: Average -->
+                    <div class="hero-result-card">
+                        <div class="hero-result-content">
+                            <div class="hero-result-label">Calculated Average (Arithmetic Mean)</div>
+                            <div class="hero-result-value" id="resultAverage">0</div>
+                        </div>
+                        <button type="button" class="hero-copy-btn" id="copyAvgBtn" title="Copy average value to clipboard">
+                            📋 Copy Average
+                        </button>
+                    </div>
+
+                    <!-- Key Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-label">Total Sum</div>
+                            <div class="stat-value" id="resultSum">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Number of Values (Count)</div>
+                            <div class="stat-value" id="resultCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Median</div>
+                            <div class="stat-value" id="resultMedian">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Range (Max - Min)</div>
+                            <div class="stat-value" id="resultRange">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Calculation Step-by-Step Breakdown -->
+                    <div class="step-breakdown">
+                        <div class="breakdown-title">
+                            <span>Step-by-Step Calculation Breakdown</span>
+                        </div>
+
+                        <div class="formula-callout">
+                            <div class="formula-label">Formula Used</div>
+                            <div class="formula-code">Average = Sum ÷ Number of Values</div>
+                        </div>
+
+                        <div class="steps-flow">
+                            <div class="step-card">
+                                <div class="step-card-header">Numbers:</div>
+                                <div class="step-expression" id="stepNumbers">0</div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-card-header">Sum:</div>
+                                <div class="step-expression" id="stepSum">0</div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-card-header">Count:</div>
+                                <div class="step-expression" id="stepCount">0</div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-card-header">Average:</div>
+                                <div class="step-expression" id="stepAverage">0 ÷ 0 = 0</div>
+                            </div>
+                        </div>
+
+                        <div class="breakdown-actions">
+                            <button type="button" class="tool-btn" id="copyBreakdownBtn">
+                                📑 Copy Full Calculation Breakdown
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- SEO Content Section 1: How to Calculate an Average -->
+    <section class="content-section alt-bg">
+        <div class="container text-container">
+            <h2>How to Calculate an Average</h2>
+            <p>
+                An average represents the central tendency or typical benchmark of a dataset. In everyday mathematics, calculating an average means determining the <strong>arithmetic mean</strong>. It provides a single concise number that summarizes multiple individual observations.
+            </p>
+            <p>
+                To calculate an average manually or conceptually, follow these three clear steps:
+            </p>
+            <ol>
+                <li><strong>Gather all your numbers:</strong> Write down every value you want to include in the calculation. Values can be whole numbers, decimals, or negative numbers.</li>
+                <li><strong>Add all numbers together (Sum):</strong> Sum every number in the dataset to obtain the grand total.</li>
+                <li><strong>Divide by the number of values (Count):</strong> Divide the grand total by the total quantity of items. The resulting quotient is your exact average.</li>
+            </ol>
+            <p>
+                Whether calculating school test grades, monthly utility bills, or business revenue trends, the average remains one of the most reliable and widely used statistical figures worldwide.
+            </p>
+        </div>
+    </section>
+
+    <!-- SEO Content Section 2: Average Formula -->
+    <section class="content-section">
+        <div class="container text-container">
+            <h2>Average Formula</h2>
+            <p>
+                The mathematical formula to calculate the average of numbers is straightforward:
+            </p>
+            <div class="formula-callout">
+                <div class="formula-label">Standard Average Equation</div>
+                <div class="formula-code">Average = Sum ÷ Count</div>
+            </div>
+            <p>
+                In formal mathematical and statistical notation, the arithmetic mean is often symbolized as <strong>x̄</strong> (pronounced "x-bar") for a sample, or <strong>μ</strong> (the Greek letter mu) for a complete population:
+            </p>
+            <div class="math-snippet">
+                x̄ = (x₁ + x₂ + x₃ + ... + xₙ) ÷ n = (∑x) ÷ n
+            </div>
+            <p>Where:</p>
+            <ul>
+                <li><strong>∑ (Sigma):</strong> Represents summation (adding all values together).</li>
+                <li><strong>x:</strong> Represents each individual data point or observation.</li>
+                <li><strong>n:</strong> Represents the total count of observations in the dataset.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SEO Content Section 3: How the Average Calculator Works -->
+    <section class="content-section alt-bg">
+        <div class="container text-container">
+            <h2>How the Average Calculator Works</h2>
+            <p>
+                Our <strong>average calculator online</strong> is engineered for frictionless data processing directly inside your web browser. Instead of requiring you to format your numbers into strict rigid tables, our parser intelligently recognizes numbers regardless of how they are entered.
+            </p>
+            <p>
+                Here is how the processing pipeline functions behind the scenes:
+            </p>
+            <ul>
+                <li><strong>Universal Delimiter Parsing:</strong> The tool automatically splits values separated by commas, spaces, line breaks, carriage returns, semicolons, and tab stops.</li>
+                <li><strong>Spreadsheet Copy-Paste Compatibility:</strong> If you copy an entire row, column, or table from Microsoft Excel or Google Sheets, the tool strips away spreadsheet formatting and parses the raw numbers instantly.</li>
+                <li><strong>Instant Precision Handling:</strong> Decimals, fractions, and negative integers are handled using floating-point precision, rounding the final display cleanly to avoid ugly scientific notation or floating errors.</li>
+                <li><strong>Zero-Server Privacy:</strong> All calculations execute in client-side JavaScript. Your confidential financial numbers, student grades, or research datasets never leave your computer.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SEO Content Section 4: Average Calculation Example -->
+    <section class="content-section">
+        <div class="container text-container">
+            <h2>Average Calculation Example</h2>
+            <p>
+                To see the formula in action, explore these two original worked examples demonstrating how to find the average of a set of numbers:
+            </p>
+
+            <div class="example-grid">
+                <!-- Example 1 -->
+                <div class="example-box">
+                    <h3>Example 1: Basic Integers</h3>
+                    <p>Consider the four numbers: <strong>15, 20, 25, 30</strong></p>
+                    <div class="math-snippet">
+                        <strong>Step 1 (Sum):</strong> 15 + 20 + 25 + 30 = 90<br>
+                        <strong>Step 2 (Count):</strong> 4 values<br>
+                        <strong>Step 3 (Average):</strong> 90 ÷ 4 = <strong>22.5</strong>
+                    </div>
+                    <p>The average of these four values is <strong>22.5</strong>. Notice that even with whole numbers, the resulting average can be a decimal.</p>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="example-box">
+                    <h3>Example 2: Exam Test Scores</h3>
+                    <p>A student records 5 test scores: <strong>74, 82, 88, 91, 95</strong></p>
+                    <div class="math-snippet">
+                        <strong>Step 1 (Sum):</strong> 74 + 82 + 88 + 91 + 95 = 430<br>
+                        <strong>Step 2 (Count):</strong> 5 exam scores<br>
+                        <strong>Step 3 (Average):</strong> 430 ÷ 5 = <strong>86</strong>
+                    </div>
+                    <p>The student's average test grade across all five exams is <strong>86</strong>, indicating solid Grade-B overall academic performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Content Section 5: When Should You Use an Average? -->
+    <section class="content-section alt-bg">
+        <div class="container text-container">
+            <h2>When Should You Use an Average?</h2>
+            <p>
+                An average is ideal whenever you need a single summarizing value that balances every element in a group equally. Common real-world applications include:
+            </p>
+            <ul>
+                <li><strong>Academic Grading:</strong> Calculating semester GPA or course test score averages to gauge cumulative student performance.</li>
+                <li><strong>Personal Finance & Budgeting:</strong> Finding your average monthly grocery expenditure, utility bill costs, or fuel expenses to establish realistic spending limits.</li>
+                <li><strong>Sports Analytics:</strong> Calculating batting averages in baseball, points per game in basketball, or average lap times in racing.</li>
+                <li><strong>Meteorology & Climate:</strong> Determining typical daily temperatures, average seasonal rainfall, or snowfall patterns over multiple years.</li>
+                <li><strong>Business Metrics:</strong> Measuring average revenue per user (ARPU), average order value (AOV), or average support ticket resolution time.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SEO Content Section 6: Average vs Mean -->
+    <section class="content-section">
+        <div class="container text-container">
+            <h2>Average vs Mean</h2>
+            <p>
+                In standard conversational English and elementary mathematics, the words <strong>average</strong> and <strong>mean</strong> are almost always used interchangeably to describe the arithmetic mean.
+            </p>
+            <p>
+                However, in statistical analysis and advanced mathematics, the distinction becomes more nuanced:
+            </p>
+            <ul>
+                <li><strong>The Arithmetic Mean:</strong> The sum of all elements divided by the count. In statistics, this can be specified as a <em>sample mean</em> ($\bar{x}$) when measuring a subgroup, or a <em>population mean</em> ($\mu$) when measuring every member of a group.</li>
+                <li><strong>Other Types of Means:</strong> In specialized fields, mathematicians also compute geometric means (for compounding growth rates) and harmonic means (for rates and speeds).</li>
+                <li><strong>Measures of Central Tendency:</strong> Broadly speaking, "average" can refer to any measurement of central tendency, which encompasses the <strong>mean</strong>, the <strong>median</strong> (the center rank), and the <strong>mode</strong> (the most frequent value).</li>
+            </ul>
+
+            <!-- Table of Comparison -->
+            <div class="table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>How It Is Calculated</th>
+                            <th>Best Used For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mean (Average)</strong></td>
+                            <td>Sum of all numbers divided by count</td>
+                            <td>Symmetric data with no extreme outliers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Median</strong></td>
+                            <td>The middle number in an ordered list</td>
+                            <td>Skewed datasets (e.g. salaries, house prices)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mode</strong></td>
+                            <td>The value that occurs most frequently</td>
+                            <td>Categorical data or popularity analysis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Internal Linking Section for Related Tools -->
+            <h3>Explore Related Statistical Calculators & Concepts</h3>
+            <p>
+                To deepen your understanding or perform other essential statistical computations, explore our related guides:
+            </p>
+            <div class="tools-grid">
+                <a href="guide.html#mean-calculator" class="tool-card">
+                    <h4>Mean Calculator</h4>
+                    <p>Learn detailed arithmetic mean formulas and applications.</p>
+                    <span class="tool-link-text">Read Guide →</span>
+                </a>
+                <a href="guide.html#median-calculator" class="tool-card">
+                    <h4>Median Calculator</h4>
+                    <p>Find the exact middle value and protect against skewed data.</p>
+                    <span class="tool-link-text">Read Guide →</span>
+                </a>
+                <a href="guide.html#mode-calculator" class="tool-card">
+                    <h4>Mode Calculator</h4>
+                    <p>Determine the most frequently occurring value in any list.</p>
+                    <span class="tool-link-text">Read Guide →</span>
+                </a>
+                <a href="guide.html#weighted-average-calculator" class="tool-card">
+                    <h4>Weighted Average Calculator</h4>
+                    <p>Calculate averages when different values carry different weights.</p>
+                    <span class="tool-link-text">Read Guide →</span>
+                </a>
+                <a href="guide.html#percentage-calculator" class="tool-card">
+                    <h4>Percentage Calculator</h4>
+                    <p>Compute ratios, percentage increases, and changes easily.</p>
+                    <span class="tool-link-text">Read Guide →</span>
+                </a>
+                <a href="guide.html#standard-deviation-calculator" class="tool-card">
+                    <h4>Standard Deviation Calculator</h4>
+                    <p>Measure dataset spread and variance around the mean.</p>
+                    <span class="tool-link-text">Read Guide →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Content Section 7: When an Average Can Be Misleading -->
+    <section class="content-section alt-bg">
+        <div class="container text-container">
+            <h2>When an Average Can Be Misleading</h2>
+            <p>
+                While the arithmetic average is immensely practical, it has one significant statistical vulnerability: <strong>extreme outliers</strong>. Because every single number is summed into the total, an unusually massive or tiny number can pull the average far away from what is truly "typical."
+            </p>
+
+            <div class="callout-box warning-callout">
+                <span class="callout-badge">Outlier Demonstration</span>
+                <p>Consider five individual income values: <strong>10, 12, 14, 15, 100</strong></p>
+                <div class="math-snippet">
+                    Sum = 10 + 12 + 14 + 15 + 100 = 151<br>
+                    Count = 5<br>
+                    <strong>Average (Mean) = 151 ÷ 5 = 30.2</strong>
+                </div>
+                <p>
+                    Notice the paradox: <strong>four out of the five values (80% of the dataset) are 15 or below</strong>, yet the computed average is <strong>30.2</strong>! The single extreme outlier of 100 pulled the average upward, painting a distorted picture of the typical value.
+                </p>
+                <p style="margin-bottom: 0;">
+                    In this scenario, calculating the <strong>median</strong> yields <strong>14</strong>, which far more accurately represents the typical observation. Whenever your dataset contains extreme highs or lows, always compare the average with the median or mode.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Content Section 8: Frequently Asked Questions -->
+    <section class="content-section">
+        <div class="container text-container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Clear answers to common questions about calculating averages and using our online tool.</p>
+            </div>
+
+            <div class="faq-list">
+                <!-- FAQ 1 -->
+                <details class="faq-card" open>
+                    <summary class="faq-question">
+                        <span>What is an average calculator?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>An average calculator is a free digital tool that computes the arithmetic mean of any collection of numbers. It automatically sums all provided values and divides the total by the count, displaying both the final answer and a step-by-step breakdown.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>How do I calculate an average?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>To calculate an average manually, add all the values together to find their sum, count how many values you have, and divide the sum by the count. You can also paste your numbers into this calculator to get instant results.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>How do you find the average of numbers?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>You find the average by using the formula: <code>Average = Sum ÷ Count</code>. For example, to find the average of 10, 20, 30, and 40, add them together (100) and divide by 4 to get 25.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>Is average the same as mean?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>In standard mathematics and day-to-day conversation, yes—"average" almost always refers to the arithmetic mean. In advanced statistics, "average" can also describe the median or mode as general measures of central tendency.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>Can I enter decimal numbers?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Yes. Our calculator handles decimals (e.g., 3.14, -0.75, 120.45) with precision, ensuring accurate results regardless of the decimal places in your dataset.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ 6 -->
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>Can I paste numbers from Excel?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Yes! You can copy columns or rows directly from Microsoft Excel, Google Sheets, or Apple Numbers and paste them into the box. The tool automatically detects tabs and line breaks.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ 7 -->
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>Can an average be affected by outliers?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Yes, significantly. Extreme values pull the mean toward them. In datasets with heavy skew (such as real estate prices or executive salaries), comparing the average with the median provides a more balanced perspective.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ 8 -->
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>What is the average formula?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>The standard average formula is: <code>Average = (Sum of all values) ÷ (Number of values)</code>, symbolically represented in statistics as <code>x̄ = (∑x) ÷ n</code>.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ 9 -->
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>Can I calculate an average online for free?</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Yes, this average calculator is 100% free with no usage limits, no login requirement, and complete privacy since calculations occur on your own device.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Informational Disclaimer -->
+    <section class="disclaimer-section">
+        <div class="container text-container">
+            <div class="disclaimer-card">
+                <strong>Notice:</strong> This calculator is provided for educational and informational purposes. Check your input values before using the result for important decisions.
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Average Calculator</h4>
-                    <p>Free online average calculator. Calculate the arithmetic mean of any set of numbers.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h4><span>∑</span> Average Calculator</h4>
+                    <p>
+                        A fast, lightweight, browser-based average calculator that computes arithmetic mean, sum, count, and step-by-step solutions with complete user privacy.
+                    </p>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
+                <div class="footer-col">
+                    <h5>Calculators & Guides</h5>
                     <ul>
-                        <li><a href="index.html">Calculator</a></li>
-                        <li><a href="guide.html">Guide</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="index.html">Average Calculator</a></li>
+                        <li><a href="guide.html">Complete Math Guide</a></li>
+                        <li><a href="guide.html#mean-calculator">Mean Calculator</a></li>
+                        <li><a href="guide.html#median-calculator">Median Calculator</a></li>
+                        <li><a href="guide.html#mode-calculator">Mode Calculator</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
+                <div class="footer-col">
+                    <h5>Company & Legal</h5>
                     <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ Page</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="disclaimer.html">Disclaimer</a></li>
                     </ul>
@@ -247,10 +701,12 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Average Calculator. All rights reserved.</p>
+                <p>Designed for speed, accuracy, and client-side privacy.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Interactive Script -->
     <script src="script.js"></script>
 </body>
 </html>

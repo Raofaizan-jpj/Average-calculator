@@ -1,287 +1,425 @@
 /**
- * Average Calculator - Main Script
- * Handles calculator functionality, input validation, and result display
+ * Average Calculator - Interactive Logic
+ * High-performance, client-side, zero-dependency calculation engine
  */
 
-// DOM Elements
-const calculatorForm = document.getElementById('calculatorForm');
-const numbersInput = document.getElementById('numbersInput');
-const clearBtn = document.getElementById('clearBtn');
-const copyBtn = document.getElementById('copyBtn');
-const errorMessage = document.getElementById('errorMessage');
-const resultsSection = document.getElementById('resultsSection');
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements
+    const numbersInput = document.getElementById('numbersInput');
+    const calcForm = document.getElementById('calcForm');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const loadExampleBtn = document.getElementById('loadExampleBtn');
+    const pasteBtn = document.getElementById('pasteBtn');
+    const clearToolbarBtn = document.getElementById('clearToolbarBtn');
 
-// Event Listeners
-calculatorForm.addEventListener('submit', handleCalculate);
-clearBtn.addEventListener('click', clearCalculator);
-copyBtn.addEventListener('click', copyResult);
+    const inputCounter = document.getElementById('inputCounter');
+    const alertBox = document.getElementById('alertBox');
+    const alertMessage = document.getElementById('alertMessage');
+    const resultsCard = document.getElementById('resultsCard');
 
-/**
- * Parse input string and extract valid numbers
- * Supports: commas, spaces, line breaks, decimals, negative numbers
- */
-function parseNumbers(input) {
-    if (!input || typeof input !== 'string') {
-        return [];
+    // Result Value Placeholders
+    const resultAverage = document.getElementById('resultAverage');
+    const resultSum = document.getElementById('resultSum');
+    const resultCount = document.getElementById('resultCount');
+    const resultMedian = document.getElementById('resultMedian');
+    const resultMin = document.getElementById('resultMin');
+    const resultMax = document.getElementById('resultMax');
+    const resultRange = document.getElementById('resultRange');
+
+    // Step-by-Step Breakdown Elements
+    const stepNumbers = document.getElementById('stepNumbers');
+    const stepSum = document.getElementById('stepSum');
+    const stepCount = document.getElementById('stepCount');
+    const stepAverage = document.getElementById('stepAverage');
+
+    // Copy Buttons & Feedback
+    const copyAvgBtn = document.getElementById('copyAvgBtn');
+    const copyBreakdownBtn = document.getElementById('copyBreakdownBtn');
+    const copyToast = document.getElementById('copyToast');
+
+    // Current State Cache
+    let currentCalculation = null;
+
+    /**
+     * Parse raw string input into numbers.
+     * Supports commas, newlines, carriage returns, spaces, tabs, semicolons, and plus signs (+).
+     * Automatically ignores trailing plus sign(s) such as "10+30+20+50+".
+     */
+    function parseInput(rawText) {
+        if (!rawText || typeof rawText !== 'string') {
+            return { validNumbers: [], invalidTokens: [] };
+        }
+
+        let cleaned = rawText.trim();
+        if (!cleaned) {
+            return { validNumbers: [], invalidTokens: [] };
+        }
+
+        // Automatically ignore trailing plus sign(s) and any trailing delimiters/whitespace
+        // Handles inputs like "10+30+20+50+", "10 + 20 + ", "10+20+++", etc.
+        cleaned = cleaned.replace(/(?:\s*[\+,\s;]+\s*)*\+[\s+,;]*$/, '').trim();
+        // Also trim any remaining trailing delimiters (commas, semicolons, spaces)
+        cleaned = cleaned.replace(/[,;\s]+$/, '').trim();
+
+        if (!cleaned) {
+            return { validNumbers: [], invalidTokens: [] };
+        }
+
+        // Split by commas, semicolons, tabs, newlines, spaces, or plus signs (+)
+        // Keep negative numbers intact (e.g. 10 + -5 -> tokens: 10, -5)
+        const tokens = cleaned
+            .split(/[\r\n\t,;\s]+|\+/)
+            .map(token => token.trim())
+            .filter(token => token.length > 0);
+
+        const validNumbers = [];
+        const invalidTokens = [];
+
+        for (const token of tokens) {
+            // Check if string is a valid numeric representation
+            // Handles integers, negative numbers, floats (e.g. -12.4, 0.5, .75)
+            const num = Number(token);
+
+            if (!isNaN(num) && isFinite(num) && token !== '') {
+                validNumbers.push(num);
+            } else {
+                invalidTokens.push(token);
+            }
+        }
+
+        return { validNumbers, invalidTokens };
     }
 
-    // Replace line breaks and multiple spaces with commas
-    let normalized = input
-        .replace(/[\n\r]+/g, ',')
-        .replace(/\s+/g, ',')
-        .replace(/,+/g, ',');
+    /**
+     * Format a floating point or integer number cleanly without floating-point artifacts.
+     */
+    function formatNumber(val, maxDecimals = 6) {
+        if (!isFinite(val)) return 'Invalid';
+        if (Number.isInteger(val)) return val.toLocaleString();
 
-    // Split by commas
-    let parts = normalized.split(',');
+        // Round cleanly to maxDecimals and trim unnecessary trailing zeros
+        const factor = Math.pow(10, maxDecimals);
+        const rounded = Math.round((val + Number.EPSILON) * factor) / factor;
+        return rounded.toLocaleString(undefined, {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: maxDecimals
+        });
+    }
 
-    // Convert to numbers and filter valid values
-    let numbers = parts
-        .map(part => part.trim())
-        .filter(part => part !== '')
-        .map(part => parseFloat(part))
-        .filter(num => !isNaN(num));
+    /**
+     * Calculate statistical metrics
+     */
+    function calculateStats(numbers) {
+        if (!numbers || numbers.length === 0) return null;
 
-    return numbers;
-}
+        const count = numbers.length;
+        const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+        const average = sum / count;
 
-/**
- * Validate the numbers array
- */
-function validateNumbers(numbers) {
-    if (!Array.isArray(numbers) || numbers.length === 0) {
+        const sorted = [...numbers].sort((a, b) => a - b);
+        const min = sorted[0];
+        const max = sorted[sorted.length - 1];
+        const range = max - min;
+
+        let median;
+        const mid = Math.floor(sorted.length / 2);
+        if (sorted.length % 2 === 0) {
+            median = (sorted[mid - 1] + sorted[mid]) / 2;
+        } else {
+            median = sorted[mid];
+        }
+
         return {
-            valid: false,
-            message: 'Please enter at least one valid number.'
+            numbers,
+            sorted,
+            count,
+            sum,
+            average,
+            median,
+            min,
+            max,
+            range
         };
     }
 
-    if (numbers.length < 2) {
-        return {
-            valid: false,
-            message: 'Please enter at least two valid numbers to calculate an average.'
-        };
+    /**
+     * Show validation error alert
+     */
+    function showError(msg) {
+        if (!alertBox || !alertMessage) return;
+        alertMessage.textContent = msg;
+        alertBox.style.display = 'block';
+        if (resultsCard) {
+            resultsCard.style.display = 'none';
+        }
     }
 
-    // Check for infinite or extremely large numbers
-    if (numbers.some(num => !isFinite(num))) {
-        return {
-            valid: false,
-            message: 'Please enter valid numbers only.'
-        };
+    /**
+     * Hide validation error alert
+     */
+    function hideError() {
+        if (!alertBox) return;
+        alertBox.style.display = 'none';
     }
 
-    return { valid: true };
-}
+    /**
+     * Display calculation results and step-by-step breakdown
+     */
+    function renderResults(stats) {
+        if (!stats) return;
+        currentCalculation = stats;
+        hideError();
 
-/**
- * Calculate statistics
- */
-function calculateStats(numbers) {
-    const count = numbers.length;
-    const sum = numbers.reduce((acc, num) => acc + num, 0);
-    const average = sum / count;
+        // Primary Hero Average
+        resultAverage.textContent = formatNumber(stats.average, 6);
 
-    return {
-        numbers: numbers,
-        count: count,
-        sum: sum,
-        average: average
-    };
-}
+        // Secondary Stat Cards
+        resultSum.textContent = formatNumber(stats.sum, 6);
+        resultCount.textContent = stats.count.toLocaleString();
+        if (resultMedian) resultMedian.textContent = formatNumber(stats.median, 6);
+        if (resultMin) resultMin.textContent = formatNumber(stats.min, 6);
+        if (resultMax) resultMax.textContent = formatNumber(stats.max, 6);
+        if (resultRange) resultRange.textContent = formatNumber(stats.range, 6);
 
-/**
- * Format number for display
- */
-function formatNumber(num) {
-    // Handle special cases
-    if (!isFinite(num)) {
-        return 'Invalid';
+        // Step-by-Step Breakdown
+        // 1. Numbers display
+        const displayLimit = 25;
+        let numbersString = '';
+        if (stats.numbers.length <= displayLimit) {
+            numbersString = stats.numbers.map(n => formatNumber(n)).join(', ');
+        } else {
+            const firstPart = stats.numbers.slice(0, 15).map(n => formatNumber(n)).join(', ');
+            const lastPart = stats.numbers.slice(-5).map(n => formatNumber(n)).join(', ');
+            numbersString = `${firstPart}, ... [${stats.numbers.length - 20} more values] ..., ${lastPart}`;
+        }
+        stepNumbers.textContent = numbersString;
+
+        // 2. Sum Expression
+        let sumExpr = '';
+        if (stats.numbers.length <= 10) {
+            sumExpr = stats.numbers.map(n => (n < 0 ? `(${n})` : `${n}`)).join(' + ') + ` = ${formatNumber(stats.sum)}`;
+        } else {
+            const sample = stats.numbers.slice(0, 5).map(n => (n < 0 ? `(${n})` : `${n}`)).join(' + ');
+            sumExpr = `${sample} + ... (${stats.count} values) = ${formatNumber(stats.sum)}`;
+        }
+        stepSum.textContent = sumExpr;
+
+        // 3. Count
+        stepCount.textContent = `${stats.count} values`;
+
+        // 4. Division step
+        stepAverage.textContent = `${formatNumber(stats.sum)} ÷ ${stats.count} = ${formatNumber(stats.average, 6)}`;
+
+        // Show Results Card
+        resultsCard.style.display = 'block';
+
+        // Smooth scroll to results on mobile/small screens if needed
+        if (window.innerWidth < 768) {
+            resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
-    // Check if number is integer or has decimals
-    if (Number.isInteger(num)) {
-        return num.toString();
+    /**
+     * Primary calculate execution
+     */
+    function executeCalculation() {
+        const rawText = numbersInput.value.trim();
+
+        if (!rawText) {
+            showError('Please enter some numbers to calculate the average.');
+            numbersInput.focus();
+            return;
+        }
+
+        const { validNumbers, invalidTokens } = parseInput(rawText);
+
+        if (invalidTokens.length > 0) {
+            const preview = invalidTokens.slice(0, 4).map(t => `"${t}"`).join(', ');
+            const more = invalidTokens.length > 4 ? ` and ${invalidTokens.length - 4} other non-numeric items` : '';
+            showError(`Invalid input detected: ${preview}${more}. Please ensure only numbers are entered.`);
+            return;
+        }
+
+        if (validNumbers.length === 0) {
+            showError('No valid numbers were found. Please enter numerical values separated by commas, spaces, line breaks, or plus signs (+).');
+            return;
+        }
+
+        const stats = calculateStats(validNumbers);
+        renderResults(stats);
     }
 
-    // Format decimal numbers (max 10 decimal places, remove trailing zeros)
-    const formatted = num.toFixed(10).replace(/\.?0+$/, '');
-    return formatted;
-}
-
-/**
- * Handle form submission
- */
-function handleCalculate(event) {
-    event.preventDefault();
-
-    // Clear previous error
-    errorMessage.style.display = 'none';
-    errorMessage.textContent = '';
-
-    // Get and parse input
-    const input = numbersInput.value.trim();
-    const numbers = parseNumbers(input);
-
-    // Validate numbers
-    const validation = validateNumbers(numbers);
-    if (!validation.valid) {
-        showError(validation.message);
-        resultsSection.style.display = 'none';
-        return;
+    /**
+     * Clear all fields and reset state
+     */
+    function clearAll() {
+        numbersInput.value = '';
+        hideError();
+        resultsCard.style.display = 'none';
+        currentCalculation = null;
+        updateLiveCounter();
+        numbersInput.focus();
     }
 
-    // Calculate statistics
-    const stats = calculateStats(numbers);
-
-    // Display results
-    displayResults(stats);
-}
-
-/**
- * Display error message
- */
-function showError(message) {
-    errorMessage.textContent = message;
-    errorMessage.style.display = 'block';
-}
-
-/**
- * Display results
- */
-function displayResults(stats) {
-    // Format numbers for display
-    const numbersForDisplay = stats.numbers.map(formatNumber).join(', ');
-
-    // Display numbers entered
-    document.getElementById('numbersDisplay').textContent = numbersForDisplay;
-
-    // Display count
-    document.getElementById('countDisplay').textContent = stats.count;
-
-    // Display sum
-    document.getElementById('sumDisplay').textContent = formatNumber(stats.sum);
-
-    // Display average
-    document.getElementById('averageDisplay').textContent = formatNumber(stats.average);
-
-    // Display calculation breakdown
-    const breakdown = buildBreakdown(stats);
-    document.getElementById('breakdownDisplay').innerHTML = breakdown;
-
-    // Show results section
-    resultsSection.style.display = 'block';
-    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-    // Hide copy message if shown
-    document.getElementById('copyMessage').style.display = 'none';
-}
-
-/**
- * Build calculation breakdown HTML
- */
-function buildBreakdown(stats) {
-    const { numbers, count, sum, average } = stats;
-
-    // Format number string for display
-    const numbersStr = numbers.map(formatNumber).join(' + ');
-
-    // Build the calculation string
-    const calculation = `(${numbersStr}) ÷ ${count} = ${formatNumber(sum)} ÷ ${count} = <strong>${formatNumber(average)}</strong>`;
-
-    return `<p>${calculation}</p>`;
-}
-
-/**
- * Clear the calculator
- */
-function clearCalculator() {
-    numbersInput.value = '';
-    numbersInput.focus();
-    errorMessage.style.display = 'none';
-    resultsSection.style.display = 'none';
-    document.getElementById('copyMessage').style.display = 'none';
-}
-
-/**
- * Copy result to clipboard
- */
-function copyResult() {
-    const average = document.getElementById('averageDisplay').textContent;
-
-    if (!average) {
-        showError('No result to copy. Please calculate first.');
-        return;
+    /**
+     * Load realistic example dataset
+     */
+    function loadExample() {
+        const examples = [
+            '10 + 30 + 20 + 50',
+            '10, 20, 30, 40, 50',
+            '15.5, 24.2, 38.0, 42.75, 56.1',
+            '85, 92, 78, 95, 88, 76, 89',
+            '12, -4, 18, 25, -2, 30'
+        ];
+        // Cycle or pick
+        const sample = examples[Math.floor(Math.random() * examples.length)];
+        numbersInput.value = sample;
+        updateLiveCounter();
+        executeCalculation();
     }
 
-    // Copy to clipboard
-    navigator.clipboard.writeText(average)
-        .then(() => {
-            // Show success message
-            const copyMessage = document.getElementById('copyMessage');
-            copyMessage.style.display = 'block';
+    /**
+     * Update live status counter under textarea
+     */
+    function updateLiveCounter() {
+        const rawText = numbersInput.value;
+        if (!rawText.trim()) {
+            inputCounter.textContent = '0 numbers entered';
+            return;
+        }
 
-            // Hide message after 3 seconds
-            setTimeout(() => {
-                copyMessage.style.display = 'none';
-            }, 3000);
-        })
-        .catch(err => {
-            console.error('Failed to copy:', err);
-            // Fallback: use execCommand (for older browsers)
-            try {
-                const textarea = document.createElement('textarea');
-                textarea.value = average;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
+        const { validNumbers } = parseInput(rawText);
+        const count = validNumbers.length;
+        inputCounter.textContent = `${count} number${count === 1 ? '' : 's'} detected`;
+    }
 
-                const copyMessage = document.getElementById('copyMessage');
-                copyMessage.style.display = 'block';
-                setTimeout(() => {
-                    copyMessage.style.display = 'none';
-                }, 3000);
-            } catch (fallbackErr) {
-                showError('Could not copy to clipboard. Please try again.');
+    /**
+     * Paste from clipboard with permission handling
+     */
+    async function pasteFromClipboard() {
+        try {
+            if (navigator.clipboard && navigator.clipboard.readText) {
+                const text = await navigator.clipboard.readText();
+                if (text) {
+                    if (numbersInput.value.trim().length > 0) {
+                        numbersInput.value += `\n${text}`;
+                    } else {
+                        numbersInput.value = text;
+                    }
+                    updateLiveCounter();
+                    executeCalculation();
+                }
+            } else {
+                numbersInput.focus();
+                showError('Clipboard paste access is not supported by your browser. Please use Ctrl+V / Cmd+V directly in the box.');
+            }
+        } catch (err) {
+            numbersInput.focus();
+            showError('Could not read from clipboard. Please paste manually into the text box using Ctrl+V or Cmd+V.');
+        }
+    }
+
+    /**
+     * Copy text to clipboard helper
+     */
+    function copyToClipboard(text, confirmationMsg = 'Copied!') {
+        if (!navigator.clipboard) {
+            // Fallback for older browsers
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast(confirmationMsg);
+            return;
+        }
+
+        navigator.clipboard.writeText(text).then(() => {
+            showToast(confirmationMsg);
+        }).catch(() => {
+            showToast('Unable to copy.');
+        });
+    }
+
+    /**
+     * Show toast message
+     */
+    function showToast(msg) {
+        if (!copyToast) return;
+        copyToast.textContent = `✓ ${msg}`;
+        copyToast.style.display = 'inline-flex';
+        setTimeout(() => {
+            copyToast.style.display = 'none';
+        }, 2200);
+    }
+
+    // Event Listeners
+    if (calcForm) {
+        calcForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            executeCalculation();
+        });
+    }
+
+    if (calculateBtn) {
+        calculateBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            executeCalculation();
+        });
+    }
+
+    if (clearBtn) clearBtn.addEventListener('click', clearAll);
+    if (clearToolbarBtn) clearToolbarBtn.addEventListener('click', clearAll);
+    if (loadExampleBtn) loadExampleBtn.addEventListener('click', loadExample);
+    if (pasteBtn) pasteBtn.addEventListener('click', pasteFromClipboard);
+
+    // Live typing listener
+    if (numbersInput) {
+        numbersInput.addEventListener('input', updateLiveCounter);
+
+        // Keyboard shortcuts: Enter or Ctrl+Enter to calculate, Esc to clear
+        numbersInput.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                executeCalculation();
+            } else if (e.key === 'Escape') {
+                clearAll();
             }
         });
-}
-
-/**
- * Set active navigation link
- */
-function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('nav a');
-
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
-
-/**
- * Initialize on page load
- */
-document.addEventListener('DOMContentLoaded', () => {
-    setActiveNavLink();
-    numbersInput.focus();
-});
-
-/**
- * Handle Enter key in textarea
- * Shift+Enter creates new line, regular Enter submits (on last line with content)
- */
-numbersInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-        // Only submit if we're at the end or with modifier key
-        if (event.ctrlKey) {
-            event.preventDefault();
-            calculatorForm.dispatchEvent(new Event('submit'));
-        }
     }
+
+    // Copy Average Only
+    if (copyAvgBtn) {
+        copyAvgBtn.addEventListener('click', () => {
+            if (currentCalculation) {
+                copyToClipboard(formatNumber(currentCalculation.average, 6), 'Average copied!');
+            }
+        });
+    }
+
+    // Copy Full Breakdown
+    if (copyBreakdownBtn) {
+        copyBreakdownBtn.addEventListener('click', () => {
+            if (currentCalculation) {
+                const summary = [
+                    `Average Calculator Summary`,
+                    `-------------------------`,
+                    `Values: ${currentCalculation.numbers.join(', ')}`,
+                    `Sum: ${currentCalculation.numbers.join(' + ')} = ${formatNumber(currentCalculation.sum)}`,
+                    `Count: ${currentCalculation.count}`,
+                    `Formula: Average = Sum ÷ Count`,
+                    `Average: ${formatNumber(currentCalculation.sum)} ÷ ${currentCalculation.count} = ${formatNumber(currentCalculation.average, 6)}`,
+                    `-------------------------`,
+                    `Calculated at: https://average-calculator-bay.vercel.app/`
+                ].join('\n');
+                copyToClipboard(summary, 'Full breakdown copied!');
+            }
+        });
+    }
+
+    // Initialize counter
+    updateLiveCounter();
 });
